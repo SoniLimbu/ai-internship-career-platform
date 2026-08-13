@@ -1,0 +1,595 @@
+.dashboard-page {
+  min-height: 100vh;
+  display: flex;
+  background: #f7f8fc;
+  color: #1f2937;
+}
+
+/* Sidebar */
+
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e8eaf0;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 10px 30px;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #6c63ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.logo h2 {
+  font-size: 17px;
+  margin: 0;
+}
+
+.logo span {
+  font-size: 11px;
+  color: #8b8f9c;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-item {
+  text-decoration: none;
+  color: #6b7280;
+  padding: 12px 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-item svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.menu-item:hover {
+  background: #f2f1ff;
+  color: #6c63ff;
+}
+
+.menu-item.active {
+  background: #eeeaff;
+  color: #635bdb;
+  font-weight: 600;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.logout {
+  color: #ef4444;
+}
+
+/* Main */
+
+.main-content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+/* Topbar */
+
+.topbar {
+  height: 72px;
+  background: white;
+  border-bottom: 1px solid #e8eaf0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 35px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.notification {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #6b7280;
+}
+
+.notification svg {
+  width: 20px;
+  height: 20px;
+}
+
+.notification span {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ef4444;
+  border-radius: 50%;
+  top: 1px;
+  right: 1px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #eeeaff;
+  color: #635bdb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.user-profile strong {
+  display: block;
+  font-size: 13px;
+}
+
+.user-profile small {
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+/* Content */
+
+.dashboard-content {
+  padding: 35px;
+  max-width: 1450px;
+  margin: auto;
+}
+
+.welcome-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.welcome-section h1 {
+  font-size: 27px;
+  margin: 0 0 7px;
+  color: #111827;
+}
+
+.welcome-section p {
+  margin: 0;
+  color: #8b8f9c;
+  font-size: 14px;
+}
+
+.edit-profile-btn {
+  border: none;
+  background: #6c63ff;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Stat cards */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid #eceef3;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  position: relative;
+}
+
+.stat-card span {
+  display: block;
+  color: #8b8f9c;
+  font-size: 12px;
+}
+
+.stat-card h2 {
+  margin: 3px 0 0;
+  font-size: 24px;
+}
+
+.stat-card small {
+  position: absolute;
+  bottom: 12px;
+  right: 15px;
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+.stat-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.purple {
+  background: #eeeaff;
+  color: #6c63ff;
+}
+
+.blue {
+  background: #e8f1ff;
+  color: #4f9cf9;
+}
+
+.green {
+  background: #e8f8ef;
+  color: #22a06b;
+}
+
+.orange {
+  background: #fff2df;
+  color: #e08a1f;
+}
+
+/* Cards */
+
+.card {
+  background: white;
+  border: 1px solid #eceef3;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.card-header,
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.card p {
+  color: #9ca3af;
+  font-size: 12px;
+  margin: 0;
+}
+
+.card-header strong {
+  font-size: 25px;
+  color: #635bdb;
+}
+
+/* Progress */
+
+.progress-bar {
+  height: 8px;
+  background: #eeeef3;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 22px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #6c63ff;
+  border-radius: 20px;
+}
+
+.progress-fill.readiness {
+  background: #4f9cf9;
+}
+
+.progress-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 13px;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.progress-footer button,
+.section-header button {
+  border: none;
+  background: transparent;
+  color: #635bdb;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* Internships */
+
+.section-header {
+  margin-bottom: 18px;
+}
+
+.internship-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.internship-item {
+  border: 1px solid #eceef3;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.company-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 11px;
+  background: #eeeaff;
+  color: #635bdb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.internship-info {
+  flex: 1;
+}
+
+.internship-info h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+.internship-info p {
+  margin-bottom: 7px;
+}
+
+.tags {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.tags span {
+  background: #f3f4f8;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 10px;
+  color: #6b7280;
+}
+
+.internship-info small {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+.internship-info small svg {
+  width: 11px;
+  height: 11px;
+}
+
+.match-score {
+  text-align: right;
+}
+
+.match-score strong {
+  display: block;
+  font-size: 20px;
+  color: #22a06b;
+}
+
+.match-score span {
+  display: block;
+  color: #9ca3af;
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+.match-score button {
+  border: 1px solid #ddd9ff;
+  background: #f7f6ff;
+  color: #635bdb;
+  padding: 7px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+/* Applications */
+
+.application-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 25px;
+}
+
+.application-stats div {
+  text-align: center;
+}
+
+.application-stats strong {
+  display: block;
+  font-size: 23px;
+}
+
+.application-stats span {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+/* Skill gap */
+
+.skill-gap {
+  margin-top: 20px;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 35px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.skill-row span {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.skill-row strong {
+  font-size: 10px;
+  color: #6b7280;
+}
+
+.mini-progress {
+  height: 6px;
+  background: #eeeef3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.mini-progress div {
+  height: 100%;
+  background: #6c63ff;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    padding: 20px 10px;
+  }
+
+  .logo h2,
+  .logo span,
+  .menu-item span {
+    display: none;
+  }
+
+  .menu-item {
+    justify-content: center;
+  }
+
+  .menu-item svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .main-content {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+  }
+
+  .dashboard-content {
+    padding: 20px;
+  }
+
+  .topbar {
+    padding: 0 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-section {
+    align-items: flex-start;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .internship-item {
+    align-items: flex-start;
+  }
+
+  .match-score {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .dashboard-content {
+    padding: 15px;
+  }
+
+  .application-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
