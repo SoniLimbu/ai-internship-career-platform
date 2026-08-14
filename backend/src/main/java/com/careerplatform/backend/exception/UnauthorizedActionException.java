@@ -1,4 +1,8 @@
 package com.careerplatform.backend.exception;
 
-public class UnauthorizedActionException {
+/** Thrown when an authenticated user tries to act on a resource they don't own. */
+public class UnauthorizedActionException extends RuntimeException {
+    public UnauthorizedActionException(String message) {
+        super(message);
+    }
 }
