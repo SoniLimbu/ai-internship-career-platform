@@ -31,3 +31,41 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#  Secrets never commit
+.env
+.env.*
+application-local.yml
+application-local.properties
+*.pem
+*.key
+
+#  Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
+.factorypath
+bin/
+out/
+
+#  OS
+.DS_Store
+Thumbs.db
+
+# Logs / runtime
+*.log
+uploads/
+
+# Node (in case any tooling scripts live alongside)
+node_modules/
