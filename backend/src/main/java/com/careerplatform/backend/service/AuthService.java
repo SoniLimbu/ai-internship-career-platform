@@ -3,7 +3,7 @@ package com.careerplatform.backend.service;
 import com.careerplatform.backend.dto.request.LoginRequest;
 import com.careerplatform.backend.dto.request.RegisterRequest;
 import com.careerplatform.backend.dto.response.AuthResponse;
-import com.careerplatform.backend.entity.Role;
+import com.careerplatform.backend.enums.Role;
 import com.careerplatform.backend.entity.StudentProfile;
 import com.careerplatform.backend.entity.User;
 import com.careerplatform.backend.exception.DuplicateResourceException;
