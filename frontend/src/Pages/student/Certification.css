@@ -1,0 +1,605 @@
+.certification-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f7f8fc;
+  color: #1f2937;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.certification-header {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.certification-label {
+  margin: 0 0 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+
+  color: #7c3aed;
+}
+
+.certification-header h1 {
+  margin: 0;
+
+  font-size: 32px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.certification-description {
+  margin: 8px 0 0;
+
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.add-certification-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: none;
+  border-radius: 10px;
+
+  padding: 12px 18px;
+
+  background: #7c3aed;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.add-certification-button:hover {
+  background: #6d28d9;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 6px 15px rgba(124, 58, 237, 0.2);
+}
+
+/* =========================
+   FORM CARD
+========================= */
+
+.certification-form-card {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+
+  padding: 28px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 28px;
+}
+
+.form-header h2 {
+  margin: 0;
+
+  font-size: 22px;
+  color: #111827;
+}
+
+.form-header p {
+  margin: 6px 0 0;
+
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.close-form-button {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #f3f4f6;
+  color: #6b7280;
+
+  cursor: pointer;
+}
+
+.close-form-button:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+/* =========================
+   FORM GRID
+========================= */
+
+.certification-form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px 14px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+
+  background: #fff;
+
+  color: #111827;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #7c3aed;
+
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group small {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+/* =========================
+   FORM ACTIONS
+========================= */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  margin-top: 28px;
+  padding-top: 22px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+.cancel-button,
+.save-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  padding: 11px 17px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.cancel-button {
+  border: 1px solid #d1d5db;
+
+  background: white;
+  color: #4b5563;
+}
+
+.cancel-button:hover {
+  background: #f9fafb;
+}
+
+.save-button {
+  border: none;
+
+  background: #7c3aed;
+  color: white;
+}
+
+.save-button:hover {
+  background: #6d28d9;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.certification-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  margin: 0;
+
+  font-size: 20px;
+  color: #111827;
+}
+
+.section-title p {
+  margin: 5px 0 0;
+
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* =========================
+   CERTIFICATION LIST
+========================= */
+
+.certification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.certification-card {
+  display: flex;
+  gap: 20px;
+
+  padding: 24px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.04);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.certification-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.certification-icon {
+  flex-shrink: 0;
+
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.certification-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.certification-info h3 {
+  margin: 0 0 8px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.organization {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 15px;
+
+  color: #4b5563;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.organization svg {
+  color: #7c3aed;
+}
+
+/* =========================
+   META
+========================= */
+
+.certification-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+
+  margin-bottom: 12px;
+}
+
+.certification-meta div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+.certification-meta svg {
+  color: #7c3aed;
+}
+
+/* =========================
+   CREDENTIAL
+========================= */
+
+.credential-id {
+  margin: 0 0 10px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+.credential-id strong {
+  color: #374151;
+}
+
+.certification-description-text {
+  max-width: 850px;
+
+  margin: 0 0 18px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================
+   CARD ACTIONS
+========================= */
+
+.certification-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.certification-actions button,
+.credential-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  text-decoration: none;
+}
+
+.credential-link {
+  border: 1px solid #ddd6fe;
+
+  background: #f5f3ff;
+  color: #6d28d9;
+}
+
+.credential-link:hover {
+  background: #ede9fe;
+}
+
+.edit-button {
+  border: 1px solid #d1d5db;
+
+  background: white;
+  color: #4b5563;
+}
+
+.edit-button:hover {
+  background: #f9fafb;
+}
+
+.delete-button {
+  border: 1px solid #fecaca;
+
+  background: #fff;
+
+  color: #dc2626;
+}
+
+.delete-button:hover {
+  background: #fef2f2;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-certifications {
+  padding: 60px 30px;
+
+  text-align: center;
+
+  background: white;
+
+  border: 1px dashed #d1d5db;
+  border-radius: 16px;
+}
+
+.empty-icon {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.empty-certifications h3 {
+  margin: 0 0 8px;
+
+  font-size: 18px;
+  color: #111827;
+}
+
+.empty-certifications p {
+  max-width: 450px;
+
+  margin: 0 auto 22px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .certification-page {
+    padding: 25px 18px;
+  }
+
+  .certification-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .certification-header h1 {
+    font-size: 27px;
+  }
+
+  .add-certification-button {
+    width: 100%;
+  }
+
+  .certification-form-card {
+    padding: 20px;
+  }
+
+  .certification-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: auto;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .cancel-button,
+  .save-button {
+    width: 100%;
+  }
+
+  .certification-card {
+    flex-direction: column;
+  }
+
+  .certification-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .certification-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .certification-actions button,
+  .credential-link {
+    justify-content: center;
+  }
+}

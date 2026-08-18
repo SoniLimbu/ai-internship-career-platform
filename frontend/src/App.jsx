@@ -6,24 +6,70 @@ import Register from "./Pages/auth/Register";
 import Dashboard from "./Pages/student/Dashboard";
 import StudentProfile from "./Pages/student/StudentProfile";
 import Skills from "./Pages/student/Skills";
+import Certification from "./Pages/student/Certification";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/* Authentication */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* =========================
+            DEFAULT ROUTE
+        ========================= */}
+        <Route
+          path="/"
+          element={<Navigate to="/login" replace />}
+        />
 
-        {/* Student module */}
-        <Route path="/student/dashboard" element={<Dashboard />} />
-        <Route path="/student/profile" element={<StudentProfile />} />
-        <Route path="/student/skills" element={<Skills />} />
+        {/* =========================
+            AUTHENTICATION
+        ========================= */}
+        <Route
+          path="/login"
+          element={<Login />}
+        />
 
-        {/* Unknown URL */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+
+        {/* =========================
+            STUDENT MODULE
+        ========================= */}
+
+        {/* Student Dashboard */}
+        <Route
+          path="/student/dashboard"
+          element={<Dashboard />}
+        />
+
+        {/* Student Profile */}
+        <Route
+          path="/student/profile"
+          element={<StudentProfile />}
+        />
+
+        {/* Student Skills */}
+        <Route
+          path="/student/skills"
+          element={<Skills />}
+        />
+
+        {/* Student Certifications */}
+        <Route
+          path="/student/certifications"
+          element={<Certification />}
+        />
+
+        {/* =========================
+            UNKNOWN URL
+        ========================= */}
+        <Route
+          path="*"
+          element={<Navigate to="/login" replace />}
+        />
+
       </Routes>
     </BrowserRouter>
   );
