@@ -1,12 +1,15 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
+// Authentication pages
 import Login from "./Pages/auth/Login";
 import Register from "./Pages/auth/Register";
 
+// Student pages
 import Dashboard from "./Pages/student/Dashboard";
 import StudentProfile from "./Pages/student/StudentProfile";
 import Skills from "./Pages/student/Skills";
 import Certification from "./Pages/student/Certification";
+import Resume from "./Pages/student/Resume";
 
 function App() {
   return (
@@ -60,6 +63,12 @@ function App() {
         <Route
           path="/student/certifications"
           element={<Certification />}
+        />
+
+        {/* Student Resume */}
+        <Route
+          path="/student/resume"
+          element={<Resume />}
         />
 
         {/* =========================
