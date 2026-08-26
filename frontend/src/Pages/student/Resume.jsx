@@ -4,8 +4,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  Github,
-  Linkedin,
   GraduationCap,
   Award,
   BriefcaseBusiness,
@@ -16,220 +14,74 @@ import {
   Download,
   Plus,
   Trash2,
+  Link,
 } from "lucide-react";
 
 import "./Resume.css";
 
 function Resume() {
   const [isEditing, setIsEditing] = useState(false);
+  const [message, setMessage] = useState("");
 
   const [resumeData, setResumeData] = useState({
     name: "Soni Limbu",
-    title: "BSc (Hons) Computing Student",
     email: "soni@example.com",
     phone: "98XXXXXXXX",
     location: "Itahari, Nepal",
-    github: "https://github.com/SoniLimbu",
-    linkedin: "https://linkedin.com/",
+
+    title: "BSc (Hons) Computing Student",
+
     summary:
-      "Computing student passionate about frontend development, UI/UX design and building useful digital products. Interested in developing modern web applications and continuously improving technical skills.",
+      "Computing student interested in frontend development, UI/UX design, and building useful digital products.",
+
     education: [
       {
         id: 1,
         degree: "BSc (Hons) Computing",
         institution: "Itahari International College",
         year: "2024 - Present",
-        description:
-          "Studying computing with a focus on software development, web technologies and databases.",
       },
     ],
+
     skills: [
       "React",
       "JavaScript",
       "HTML",
       "CSS",
-      "Django",
       "Python",
-      "Git",
-      "GitHub",
+      "Django",
     ],
+
+    certifications: [
+      {
+        id: 1,
+        name: "Web Development",
+        issuer: "Online Certification",
+        year: "2026",
+      },
+    ],
+
     projects: [
       {
         id: 1,
         name: "AI Internship & Career Platform",
         description:
-          "A platform designed to help university students manage their career profiles, skills, education, projects and internship opportunities.",
+          "An AI-powered platform designed to help university students find internships and develop their careers.",
         technologies: "React, Django, PostgreSQL",
       },
-      {
-        id: 2,
-        name: "Weather App",
-        description:
-          "A responsive weather application that displays weather information using an external weather API.",
-        technologies: "HTML, CSS, JavaScript, Weather API",
-      },
     ],
-    certifications: [
-      {
-        id: 1,
-        name: "Google UX Design Certificate",
-        organization: "Google",
-        year: "2026",
-      },
-    ],
+
+    github: "https://github.com/SoniLimbu",
+    linkedin: "https://linkedin.com/",
   });
 
-  const [message, setMessage] = useState("");
+  const [newSkill, setNewSkill] = useState("");
 
-  const handlePersonalChange = (e) => {
+  const handleChange = (e) => {
     setResumeData({
       ...resumeData,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handleSummaryChange = (e) => {
-    setResumeData({
-      ...resumeData,
-      summary: e.target.value,
-    });
-  };
-
-  const handleEducationChange = (id, field, value) => {
-    setResumeData({
-      ...resumeData,
-      education: resumeData.education.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              [field]: value,
-            }
-          : item
-      ),
-    });
-  };
-
-  const handleProjectChange = (id, field, value) => {
-    setResumeData({
-      ...resumeData,
-      projects: resumeData.projects.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              [field]: value,
-            }
-          : item
-      ),
-    });
-  };
-
-  const handleCertificationChange = (id, field, value) => {
-    setResumeData({
-      ...resumeData,
-      certifications: resumeData.certifications.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              [field]: value,
-            }
-          : item
-      ),
-    });
-  };
-
-  const handleSkillsChange = (e) => {
-    const skills = e.target.value
-      .split(",")
-      .map((skill) => skill.trim())
-      .filter((skill) => skill !== "");
-
-    setResumeData({
-      ...resumeData,
-      skills,
-    });
-  };
-
-  const addEducation = () => {
-    setResumeData({
-      ...resumeData,
-      education: [
-        ...resumeData.education,
-        {
-          id: Date.now(),
-          degree: "",
-          institution: "",
-          year: "",
-          description: "",
-        },
-      ],
-    });
-  };
-
-  const deleteEducation = (id) => {
-    setResumeData({
-      ...resumeData,
-      education: resumeData.education.filter(
-        (item) => item.id !== id
-      ),
-    });
-  };
-
-  const addProject = () => {
-    setResumeData({
-      ...resumeData,
-      projects: [
-        ...resumeData.projects,
-        {
-          id: Date.now(),
-          name: "",
-          description: "",
-          technologies: "",
-        },
-      ],
-    });
-  };
-
-  const deleteProject = (id) => {
-    setResumeData({
-      ...resumeData,
-      projects: resumeData.projects.filter(
-        (item) => item.id !== id
-      ),
-    });
-  };
-
-  const addCertification = () => {
-    setResumeData({
-      ...resumeData,
-      certifications: [
-        ...resumeData.certifications,
-        {
-          id: Date.now(),
-          name: "",
-          organization: "",
-          year: "",
-        },
-      ],
-    });
-  };
-
-  const deleteCertification = (id) => {
-    setResumeData({
-      ...resumeData,
-      certifications: resumeData.certifications.filter(
-        (item) => item.id !== id
-      ),
-    });
-  };
-
-  const handleEdit = () => {
-    setMessage("");
-    setIsEditing(true);
-  };
-
-  const handleCancel = () => {
-    setMessage("");
-    setIsEditing(false);
   };
 
   const handleSave = (e) => {
@@ -239,6 +91,153 @@ function Resume() {
     setIsEditing(false);
   };
 
+  const handleCancel = () => {
+    setMessage("");
+    setIsEditing(false);
+  };
+
+  const addSkill = () => {
+    const skill = newSkill.trim();
+
+    if (!skill) return;
+
+    if (resumeData.skills.includes(skill)) {
+      setNewSkill("");
+      return;
+    }
+
+    setResumeData({
+      ...resumeData,
+      skills: [...resumeData.skills, skill],
+    });
+
+    setNewSkill("");
+  };
+
+  const removeSkill = (skillToRemove) => {
+    setResumeData({
+      ...resumeData,
+      skills: resumeData.skills.filter(
+        (skill) => skill !== skillToRemove
+      ),
+    });
+  };
+
+  const addEducation = () => {
+    const newEducation = {
+      id: Date.now(),
+      degree: "New Qualification",
+      institution: "Institution Name",
+      year: "Year",
+    };
+
+    setResumeData({
+      ...resumeData,
+      education: [...resumeData.education, newEducation],
+    });
+  };
+
+  const removeEducation = (id) => {
+    setResumeData({
+      ...resumeData,
+      education: resumeData.education.filter(
+        (education) => education.id !== id
+      ),
+    });
+  };
+
+  const updateEducation = (id, field, value) => {
+    setResumeData({
+      ...resumeData,
+      education: resumeData.education.map((education) =>
+        education.id === id
+          ? {
+              ...education,
+              [field]: value,
+            }
+          : education
+      ),
+    });
+  };
+
+  const addCertification = () => {
+    const newCertification = {
+      id: Date.now(),
+      name: "New Certification",
+      issuer: "Organization",
+      year: "2026",
+    };
+
+    setResumeData({
+      ...resumeData,
+      certifications: [
+        ...resumeData.certifications,
+        newCertification,
+      ],
+    });
+  };
+
+  const removeCertification = (id) => {
+    setResumeData({
+      ...resumeData,
+      certifications: resumeData.certifications.filter(
+        (certification) => certification.id !== id
+      ),
+    });
+  };
+
+  const updateCertification = (id, field, value) => {
+    setResumeData({
+      ...resumeData,
+      certifications: resumeData.certifications.map(
+        (certification) =>
+          certification.id === id
+            ? {
+                ...certification,
+                [field]: value,
+              }
+            : certification
+      ),
+    });
+  };
+
+  const addProject = () => {
+    const newProject = {
+      id: Date.now(),
+      name: "New Project",
+      description: "Project description",
+      technologies: "Technologies used",
+    };
+
+    setResumeData({
+      ...resumeData,
+      projects: [...resumeData.projects, newProject],
+    });
+  };
+
+  const removeProject = (id) => {
+    setResumeData({
+      ...resumeData,
+      projects: resumeData.projects.filter(
+        (project) => project.id !== id
+      ),
+    });
+  };
+
+  const updateProject = (id, field, value) => {
+    setResumeData({
+      ...resumeData,
+      projects: resumeData.projects.map((project) =>
+        project.id === id
+          ? {
+              ...project,
+              [field]: value,
+            }
+          : project
+      ),
+    });
+  };
+
   const handleDownload = () => {
     window.print();
   };
@@ -246,72 +245,71 @@ function Resume() {
   return (
     <div className="resume-page">
 
-      {/* =========================
-          PAGE HEADER
-      ========================= */}
-
-      <div className="resume-page-header no-print">
+      {/* HEADER */}
+      <div className="resume-header">
         <div>
-          <p className="resume-label">
-            STUDENT CAREER
-          </p>
+          <p className="resume-label">CAREER PROFILE</p>
 
           <h1>My Resume</h1>
 
-          <p className="resume-page-description">
-            Create and manage your professional resume.
+          <p className="resume-description">
+            Build and manage your professional resume.
           </p>
         </div>
 
         <div className="resume-header-actions">
+          <button
+            className="download-resume-button"
+            onClick={handleDownload}
+          >
+            <Download size={17} />
+            Download
+          </button>
+
           {!isEditing && (
             <button
-              className="resume-edit-button"
-              onClick={handleEdit}
+              className="edit-resume-button"
+              onClick={() => {
+                setMessage("");
+                setIsEditing(true);
+              }}
             >
               <Edit3 size={17} />
               Edit Resume
             </button>
           )}
-
-          <button
-            className="resume-download-button"
-            onClick={handleDownload}
-          >
-            <Download size={17} />
-            Download Resume
-          </button>
         </div>
       </div>
 
       {message && (
-        <div className="resume-success-message no-print">
+        <div className="resume-success-message">
           {message}
         </div>
       )}
 
-      {/* =========================
-          EDIT MODE
-      ========================= */}
-
       {isEditing ? (
+
+        /* =========================
+           EDIT MODE
+        ========================= */
+
         <form
-          className="resume-edit-container no-print"
+          className="resume-edit-container"
           onSubmit={handleSave}
         >
 
-          {/* Personal Information */}
+          {/* PERSONAL INFORMATION */}
+          <div className="resume-edit-card">
+            <div className="resume-card-title">
+              <User size={20} />
 
-          <section className="resume-edit-card">
-            <div className="resume-edit-card-header">
               <div>
                 <h2>Personal Information</h2>
+
                 <p>
-                  Add your basic contact information.
+                  Update your basic contact information.
                 </p>
               </div>
-
-              <User size={22} />
             </div>
 
             <div className="resume-form-grid">
@@ -323,7 +321,7 @@ function Resume() {
                   type="text"
                   name="name"
                   value={resumeData.name}
-                  onChange={handlePersonalChange}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -335,7 +333,7 @@ function Resume() {
                   type="text"
                   name="title"
                   value={resumeData.title}
-                  onChange={handlePersonalChange}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -346,7 +344,7 @@ function Resume() {
                   type="email"
                   name="email"
                   value={resumeData.email}
-                  onChange={handlePersonalChange}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -358,18 +356,29 @@ function Resume() {
                   type="text"
                   name="phone"
                   value={resumeData.phone}
-                  onChange={handlePersonalChange}
+                  onChange={handleChange}
                 />
               </div>
 
-              <div className="resume-input-group">
+              <div className="resume-input-group full-width">
                 <label>Location</label>
 
                 <input
                   type="text"
                   name="location"
                   value={resumeData.location}
-                  onChange={handlePersonalChange}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="resume-input-group full-width">
+                <label>Professional Summary</label>
+
+                <textarea
+                  name="summary"
+                  rows="5"
+                  value={resumeData.summary}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -380,7 +389,7 @@ function Resume() {
                   type="url"
                   name="github"
                   value={resumeData.github}
-                  onChange={handlePersonalChange}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -391,69 +400,52 @@ function Resume() {
                   type="url"
                   name="linkedin"
                   value={resumeData.linkedin}
-                  onChange={handlePersonalChange}
-                />
-              </div>
-
-              <div className="resume-input-group full-width">
-                <label>Professional Summary</label>
-
-                <textarea
-                  value={resumeData.summary}
-                  onChange={handleSummaryChange}
-                  rows="6"
+                  onChange={handleChange}
                 />
               </div>
 
             </div>
-          </section>
+          </div>
 
-          {/* Education */}
 
-          <section className="resume-edit-card">
+          {/* EDUCATION */}
+          <div className="resume-edit-card">
 
-            <div className="resume-edit-card-header">
-              <div>
-                <h2>Education</h2>
-                <p>
-                  Add your academic qualifications.
-                </p>
+            <div className="resume-section-heading">
+              <div className="resume-card-title">
+                <GraduationCap size={20} />
+
+                <div>
+                  <h2>Education</h2>
+                  <p>Add your educational background.</p>
+                </div>
               </div>
 
-              <GraduationCap size={22} />
+              <button
+                type="button"
+                className="add-resume-button"
+                onClick={addEducation}
+              >
+                <Plus size={16} />
+                Add
+              </button>
             </div>
 
             {resumeData.education.map((education) => (
               <div
-                className="resume-repeatable-item"
+                className="resume-array-item"
                 key={education.id}
               >
 
-                <div className="repeatable-item-header">
-                  <h3>Education</h3>
-
-                  <button
-                    type="button"
-                    className="resume-delete-button"
-                    onClick={() =>
-                      deleteEducation(education.id)
-                    }
-                  >
-                    <Trash2 size={16} />
-                    Delete
-                  </button>
-                </div>
-
-                <div className="resume-form-grid">
+                <div className="resume-array-grid">
 
                   <div className="resume-input-group">
                     <label>Degree</label>
 
                     <input
-                      type="text"
                       value={education.degree}
                       onChange={(e) =>
-                        handleEducationChange(
+                        updateEducation(
                           education.id,
                           "degree",
                           e.target.value
@@ -466,10 +458,9 @@ function Resume() {
                     <label>Institution</label>
 
                     <input
-                      type="text"
                       value={education.institution}
                       onChange={(e) =>
-                        handleEducationChange(
+                        updateEducation(
                           education.id,
                           "institution",
                           e.target.value
@@ -482,10 +473,9 @@ function Resume() {
                     <label>Year</label>
 
                     <input
-                      type="text"
                       value={education.year}
                       onChange={(e) =>
-                        handleEducationChange(
+                        updateEducation(
                           education.id,
                           "year",
                           e.target.value
@@ -494,224 +484,136 @@ function Resume() {
                     />
                   </div>
 
-                  <div className="resume-input-group full-width">
-                    <label>Description</label>
-
-                    <textarea
-                      rows="4"
-                      value={education.description}
-                      onChange={(e) =>
-                        handleEducationChange(
-                          education.id,
-                          "description",
-                          e.target.value
-                        )
-                      }
-                    />
-                  </div>
-
                 </div>
+
+                <button
+                  type="button"
+                  className="delete-resume-button"
+                  onClick={() =>
+                    removeEducation(education.id)
+                  }
+                >
+                  <Trash2 size={17} />
+                </button>
+
               </div>
             ))}
 
-            <button
-              type="button"
-              className="resume-add-button"
-              onClick={addEducation}
-            >
-              <Plus size={16} />
-              Add Education
-            </button>
+          </div>
 
-          </section>
 
-          {/* Skills */}
+          {/* SKILLS */}
+          <div className="resume-edit-card">
 
-          <section className="resume-edit-card">
+            <div className="resume-card-title">
+              <Code2 size={20} />
 
-            <div className="resume-edit-card-header">
               <div>
                 <h2>Skills</h2>
 
                 <p>
-                  Add skills separated by commas.
+                  Add the skills you want employers to see.
                 </p>
               </div>
-
-              <Code2 size={22} />
             </div>
 
-            <div className="resume-input-group">
-
-              <label>Skills</label>
+            <div className="skill-add-row">
 
               <input
                 type="text"
-                value={resumeData.skills.join(", ")}
-                onChange={handleSkillsChange}
-                placeholder="React, JavaScript, Python, Django..."
+                placeholder="Enter a skill"
+                value={newSkill}
+                onChange={(e) =>
+                  setNewSkill(e.target.value)
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    addSkill();
+                  }
+                }}
               />
 
-            </div>
-
-          </section>
-
-          {/* Projects */}
-
-          <section className="resume-edit-card">
-
-            <div className="resume-edit-card-header">
-              <div>
-                <h2>Projects</h2>
-
-                <p>
-                  Add your academic and personal projects.
-                </p>
-              </div>
-
-              <BriefcaseBusiness size={22} />
-            </div>
-
-            {resumeData.projects.map((project) => (
-              <div
-                className="resume-repeatable-item"
-                key={project.id}
+              <button
+                type="button"
+                className="add-resume-button"
+                onClick={addSkill}
               >
+                <Plus size={16} />
+                Add Skill
+              </button>
 
-                <div className="repeatable-item-header">
+            </div>
 
-                  <h3>Project</h3>
+            <div className="resume-skills-list">
+
+              {resumeData.skills.map((skill) => (
+                <div
+                  className="resume-skill-tag"
+                  key={skill}
+                >
+                  {skill}
 
                   <button
                     type="button"
-                    className="resume-delete-button"
                     onClick={() =>
-                      deleteProject(project.id)
+                      removeSkill(skill)
                     }
                   >
-                    <Trash2 size={16} />
-                    Delete
+                    <X size={14} />
                   </button>
-
                 </div>
+              ))}
 
-                <div className="resume-form-grid">
+            </div>
 
-                  <div className="resume-input-group">
-                    <label>Project Name</label>
+          </div>
 
-                    <input
-                      type="text"
-                      value={project.name}
-                      onChange={(e) =>
-                        handleProjectChange(
-                          project.id,
-                          "name",
-                          e.target.value
-                        )
-                      }
-                    />
-                  </div>
 
-                  <div className="resume-input-group">
-                    <label>Technologies</label>
+          {/* CERTIFICATIONS */}
+          <div className="resume-edit-card">
 
-                    <input
-                      type="text"
-                      value={project.technologies}
-                      onChange={(e) =>
-                        handleProjectChange(
-                          project.id,
-                          "technologies",
-                          e.target.value
-                        )
-                      }
-                    />
-                  </div>
+            <div className="resume-section-heading">
 
-                  <div className="resume-input-group full-width">
-                    <label>Description</label>
+              <div className="resume-card-title">
+                <Award size={20} />
 
-                    <textarea
-                      rows="4"
-                      value={project.description}
-                      onChange={(e) =>
-                        handleProjectChange(
-                          project.id,
-                          "description",
-                          e.target.value
-                        )
-                      }
-                    />
-                  </div>
+                <div>
+                  <h2>Certifications</h2>
 
+                  <p>
+                    Add certificates and achievements.
+                  </p>
                 </div>
               </div>
-            ))}
 
-            <button
-              type="button"
-              className="resume-add-button"
-              onClick={addProject}
-            >
-              <Plus size={16} />
-              Add Project
-            </button>
+              <button
+                type="button"
+                className="add-resume-button"
+                onClick={addCertification}
+              >
+                <Plus size={16} />
+                Add
+              </button>
 
-          </section>
-
-          {/* Certifications */}
-
-          <section className="resume-edit-card">
-
-            <div className="resume-edit-card-header">
-              <div>
-                <h2>Certifications</h2>
-
-                <p>
-                  Add your professional certifications.
-                </p>
-              </div>
-
-              <Award size={22} />
             </div>
 
             {resumeData.certifications.map(
               (certification) => (
                 <div
-                  className="resume-repeatable-item"
+                  className="resume-array-item"
                   key={certification.id}
                 >
 
-                  <div className="repeatable-item-header">
-
-                    <h3>Certification</h3>
-
-                    <button
-                      type="button"
-                      className="resume-delete-button"
-                      onClick={() =>
-                        deleteCertification(
-                          certification.id
-                        )
-                      }
-                    >
-                      <Trash2 size={16} />
-                      Delete
-                    </button>
-
-                  </div>
-
-                  <div className="resume-form-grid">
+                  <div className="resume-array-grid">
 
                     <div className="resume-input-group">
-                      <label>Certification Name</label>
+                      <label>Certificate</label>
 
                       <input
-                        type="text"
                         value={certification.name}
                         onChange={(e) =>
-                          handleCertificationChange(
+                          updateCertification(
                             certification.id,
                             "name",
                             e.target.value
@@ -721,15 +623,14 @@ function Resume() {
                     </div>
 
                     <div className="resume-input-group">
-                      <label>Organization</label>
+                      <label>Issuer</label>
 
                       <input
-                        type="text"
-                        value={certification.organization}
+                        value={certification.issuer}
                         onChange={(e) =>
-                          handleCertificationChange(
+                          updateCertification(
                             certification.id,
-                            "organization",
+                            "issuer",
                             e.target.value
                           )
                         }
@@ -740,10 +641,9 @@ function Resume() {
                       <label>Year</label>
 
                       <input
-                        type="text"
                         value={certification.year}
                         onChange={(e) =>
-                          handleCertificationChange(
+                          updateCertification(
                             certification.id,
                             "year",
                             e.target.value
@@ -754,28 +654,128 @@ function Resume() {
 
                   </div>
 
+                  <button
+                    type="button"
+                    className="delete-resume-button"
+                    onClick={() =>
+                      removeCertification(
+                        certification.id
+                      )
+                    }
+                  >
+                    <Trash2 size={17} />
+                  </button>
+
                 </div>
               )
             )}
 
-            <button
-              type="button"
-              className="resume-add-button"
-              onClick={addCertification}
-            >
-              <Plus size={16} />
-              Add Certification
-            </button>
+          </div>
 
-          </section>
 
-          {/* Edit Buttons */}
+          {/* PROJECTS */}
+          <div className="resume-edit-card">
 
+            <div className="resume-section-heading">
+
+              <div className="resume-card-title">
+                <BriefcaseBusiness size={20} />
+
+                <div>
+                  <h2>Projects</h2>
+
+                  <p>
+                    Showcase your important projects.
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className="add-resume-button"
+                onClick={addProject}
+              >
+                <Plus size={16} />
+                Add
+              </button>
+
+            </div>
+
+            {resumeData.projects.map((project) => (
+              <div
+                className="resume-project-edit"
+                key={project.id}
+              >
+
+                <div className="resume-input-group">
+                  <label>Project Name</label>
+
+                  <input
+                    value={project.name}
+                    onChange={(e) =>
+                      updateProject(
+                        project.id,
+                        "name",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+
+                <div className="resume-input-group">
+                  <label>Description</label>
+
+                  <textarea
+                    rows="4"
+                    value={project.description}
+                    onChange={(e) =>
+                      updateProject(
+                        project.id,
+                        "description",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+
+                <div className="resume-input-group">
+                  <label>Technologies</label>
+
+                  <input
+                    value={project.technologies}
+                    onChange={(e) =>
+                      updateProject(
+                        project.id,
+                        "technologies",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  className="delete-resume-button"
+                  onClick={() =>
+                    removeProject(project.id)
+                  }
+                >
+                  <Trash2 size={17} />
+                  Remove Project
+                </button>
+
+              </div>
+            ))}
+
+          </div>
+
+
+          {/* FORM ACTIONS */}
           <div className="resume-form-actions">
 
             <button
               type="button"
-              className="resume-cancel-button"
+              className="cancel-resume-button"
               onClick={handleCancel}
             >
               <X size={17} />
@@ -784,7 +784,7 @@ function Resume() {
 
             <button
               type="submit"
-              className="resume-save-button"
+              className="save-resume-button"
             >
               <Save size={17} />
               Save Resume
@@ -793,23 +793,27 @@ function Resume() {
           </div>
 
         </form>
+
       ) : (
 
         /* =========================
-           RESUME PREVIEW
+           VIEW MODE
         ========================= */
 
         <div className="resume-document">
 
-          {/* Resume Header */}
+          {/* RESUME TOP */}
+          <div className="resume-document-header">
 
-          <header className="resume-document-header">
+            <div className="resume-avatar">
+              SL
+            </div>
 
-            <div className="resume-name-section">
+            <div className="resume-person-info">
 
-              <h1>{resumeData.name}</h1>
+              <h2>{resumeData.name}</h2>
 
-              <h2>{resumeData.title}</h2>
+              <h3>{resumeData.title}</h3>
 
               <div className="resume-contact-row">
 
@@ -830,14 +834,14 @@ function Resume() {
 
               </div>
 
-              <div className="resume-social-row">
+              <div className="resume-links">
 
                 <a
                   href={resumeData.github}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Github size={15} />
+                  <Link size={14} />
                   GitHub
                 </a>
 
@@ -846,7 +850,7 @@ function Resume() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Linkedin size={15} />
+                  <Link size={14} />
                   LinkedIn
                 </a>
 
@@ -854,184 +858,126 @@ function Resume() {
 
             </div>
 
-          </header>
+          </div>
 
-          {/* Summary */}
 
+          {/* SUMMARY */}
           <section className="resume-document-section">
 
-            <div className="resume-section-heading">
-              <User size={18} />
-              <h2>Professional Summary</h2>
-            </div>
+            <h3>Professional Summary</h3>
 
-            <p className="resume-summary">
-              {resumeData.summary}
-            </p>
+            <p>{resumeData.summary}</p>
 
           </section>
 
-          {/* Education */}
 
-          {resumeData.education.length > 0 && (
-            <section className="resume-document-section">
+          {/* EDUCATION */}
+          <section className="resume-document-section">
 
-              <div className="resume-section-heading">
-                <GraduationCap size={18} />
-                <h2>Education</h2>
-              </div>
+            <h3>Education</h3>
 
-              {resumeData.education.map(
-                (education) => (
-                  <div
-                    className="resume-document-item"
-                    key={education.id}
-                  >
+            {resumeData.education.map((education) => (
+              <div
+                className="resume-document-item"
+                key={education.id}
+              >
 
-                    <div className="resume-item-top">
+                <div>
+                  <strong>
+                    {education.degree}
+                  </strong>
 
-                      <div>
-                        <h3>
-                          {education.degree}
-                        </h3>
+                  <p>
+                    {education.institution}
+                  </p>
+                </div>
 
-                        <p>
-                          {education.institution}
-                        </p>
-                      </div>
-
-                      <span>
-                        {education.year}
-                      </span>
-
-                    </div>
-
-                    {education.description && (
-                      <p>
-                        {education.description}
-                      </p>
-                    )}
-
-                  </div>
-                )
-              )}
-
-            </section>
-          )}
-
-          {/* Skills */}
-
-          {resumeData.skills.length > 0 && (
-            <section className="resume-document-section">
-
-              <div className="resume-section-heading">
-                <Code2 size={18} />
-                <h2>Skills</h2>
-              </div>
-
-              <div className="resume-skills">
-
-                {resumeData.skills.map(
-                  (skill, index) => (
-                    <span key={index}>
-                      {skill}
-                    </span>
-                  )
-                )}
+                <span>
+                  {education.year}
+                </span>
 
               </div>
+            ))}
 
-            </section>
-          )}
+          </section>
 
-          {/* Projects */}
 
-          {resumeData.projects.length > 0 && (
-            <section className="resume-document-section">
+          {/* SKILLS */}
+          <section className="resume-document-section">
 
-              <div className="resume-section-heading">
-                <BriefcaseBusiness size={18} />
-                <h2>Projects</h2>
-              </div>
+            <h3>Skills</h3>
 
-              {resumeData.projects.map(
-                (project) => (
-                  <div
-                    className="resume-document-item"
-                    key={project.id}
-                  >
+            <div className="resume-document-skills">
 
-                    <h3>{project.name}</h3>
+              {resumeData.skills.map((skill) => (
+                <span key={skill}>
+                  {skill}
+                </span>
+              ))}
+
+            </div>
+
+          </section>
+
+
+          {/* CERTIFICATIONS */}
+          <section className="resume-document-section">
+
+            <h3>Certifications</h3>
+
+            {resumeData.certifications.map(
+              (certification) => (
+                <div
+                  className="resume-document-item"
+                  key={certification.id}
+                >
+
+                  <div>
+                    <strong>
+                      {certification.name}
+                    </strong>
 
                     <p>
-                      {project.description}
+                      {certification.issuer}
                     </p>
-
-                    {project.technologies && (
-                      <p className="resume-technologies">
-                        <strong>
-                          Technologies:
-                        </strong>{" "}
-                        {project.technologies}
-                      </p>
-                    )}
-
                   </div>
-                )
-              )}
 
-            </section>
-          )}
+                  <span>
+                    {certification.year}
+                  </span>
 
-          {/* Certifications */}
+                </div>
+              )
+            )}
 
-          {resumeData.certifications.length > 0 && (
-            <section className="resume-document-section">
+          </section>
 
-              <div className="resume-section-heading">
-                <Award size={18} />
-                <h2>Certifications</h2>
+
+          {/* PROJECTS */}
+          <section className="resume-document-section">
+
+            <h3>Projects</h3>
+
+            {resumeData.projects.map((project) => (
+              <div
+                className="resume-project-item"
+                key={project.id}
+              >
+
+                <h4>{project.name}</h4>
+
+                <p>
+                  {project.description}
+                </p>
+
+                <span>
+                  {project.technologies}
+                </span>
+
               </div>
+            ))}
 
-              {resumeData.certifications.map(
-                (certification) => (
-                  <div
-                    className="resume-document-item"
-                    key={certification.id}
-                  >
-
-                    <div className="resume-item-top">
-
-                      <div>
-
-                        <h3>
-                          {certification.name}
-                        </h3>
-
-                        <p>
-                          {certification.organization}
-                        </p>
-
-                      </div>
-
-                      <span>
-                        {certification.year}
-                      </span>
-
-                    </div>
-
-                  </div>
-                )
-              )}
-
-            </section>
-          )}
-
-          <footer className="resume-footer">
-            <p>
-              Resume generated from Student Career Profile
-            </p>
-          </footer>
+          </section>
 
         </div>
       )}

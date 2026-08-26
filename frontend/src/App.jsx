@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-// Authentication pages
+// Authentication
 import Login from "./Pages/auth/Login";
 import Register from "./Pages/auth/Register";
 
-// Student pages
+// Student
 import Dashboard from "./Pages/student/Dashboard";
 import StudentProfile from "./Pages/student/StudentProfile";
 import Skills from "./Pages/student/Skills";
@@ -17,7 +17,7 @@ function App() {
       <Routes>
 
         {/* =========================
-            DEFAULT ROUTE
+            DEFAULT
         ========================= */}
         <Route
           path="/"
@@ -41,31 +41,31 @@ function App() {
             STUDENT MODULE
         ========================= */}
 
-        {/* Student Dashboard */}
+        {/* Dashboard */}
         <Route
           path="/student/dashboard"
           element={<Dashboard />}
         />
 
-        {/* Student Profile */}
+        {/* Profile */}
         <Route
           path="/student/profile"
           element={<StudentProfile />}
         />
 
-        {/* Student Skills */}
+        {/* Skills */}
         <Route
           path="/student/skills"
           element={<Skills />}
         />
 
-        {/* Student Certifications */}
+        {/* Certifications */}
         <Route
           path="/student/certifications"
           element={<Certification />}
         />
 
-        {/* Student Resume */}
+        {/* Resume */}
         <Route
           path="/student/resume"
           element={<Resume />}
