@@ -10,6 +10,7 @@ import StudentProfile from "./Pages/student/StudentProfile";
 import Skills from "./Pages/student/Skills";
 import Certification from "./Pages/student/Certification";
 import Resume from "./Pages/student/Resume";
+import Projects from "./Pages/student/Projects";
 
 function App() {
   return (
@@ -69,6 +70,12 @@ function App() {
         <Route
           path="/student/resume"
           element={<Resume />}
+        />
+
+        {/* Projects */}
+        <Route
+          path="/student/projects"
+          element={<Projects />}
         />
 
         {/* =========================

@@ -1,0 +1,606 @@
+.projects-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f8fafc;
+  color: #172033;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.projects-header {
+  max-width: 1200px;
+  margin: 0 auto 28px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.projects-label {
+  margin: 0 0 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+
+  color: #64748b;
+}
+
+.projects-header h1 {
+  margin: 0;
+
+  font-size: 34px;
+  font-weight: 750;
+
+  color: #111827;
+}
+
+.projects-description {
+  margin: 8px 0 0;
+
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.add-project-button,
+.save-project-button,
+.cancel-project-button {
+  border: none;
+  border-radius: 10px;
+
+  padding: 11px 17px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.add-project-button {
+  background: #111827;
+  color: white;
+}
+
+.add-project-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+
+.projects-success-message {
+  max-width: 1200px;
+  margin: 0 auto 22px;
+
+  padding: 13px 16px;
+
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+
+  background: #f0fdf4;
+  color: #166534;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   PROJECT GRID
+========================= */
+
+.projects-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projects-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+
+/* =========================
+   PROJECT CARD
+========================= */
+
+.project-card {
+  min-width: 0;
+
+  padding: 25px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 15px rgba(15, 23, 42, 0.04);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================
+   CARD TOP
+========================= */
+
+.project-card-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.project-icon {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.project-card-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.project-icon-button {
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  background: white;
+  color: #475569;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.project-icon-button:hover {
+  background: #f8fafc;
+}
+
+.project-icon-button.delete {
+  color: #dc2626;
+}
+
+.project-icon-button.delete:hover {
+  background: #fef2f2;
+}
+
+
+/* =========================
+   PROJECT TEXT
+========================= */
+
+.project-card h2 {
+  margin: 0 0 10px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.project-description {
+  margin: 0;
+
+  min-height: 72px;
+
+  font-size: 14px;
+  line-height: 1.7;
+
+  color: #64748b;
+}
+
+
+/* =========================
+   TECHNOLOGIES
+========================= */
+
+.project-technologies {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 20px;
+}
+
+.project-technologies span {
+  padding: 6px 10px;
+
+  border-radius: 7px;
+
+  background: #f1f5f9;
+  color: #334155;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   PROJECT LINKS
+========================= */
+
+.project-links {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 22px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+.project-links a {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 8px 12px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  color: #334155;
+
+  background: white;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.project-links a:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.projects-empty {
+  padding: 70px 30px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  text-align: center;
+}
+
+.projects-empty-icon {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.projects-empty h2 {
+  margin: 0 0 8px;
+
+  font-size: 22px;
+}
+
+.projects-empty p {
+  margin: 0 auto 22px;
+
+  max-width: 500px;
+
+  color: #64748b;
+
+  line-height: 1.6;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.project-form-card {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 30px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+.project-form-header {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.project-form-header h2 {
+  margin: 0 0 6px;
+
+  font-size: 22px;
+}
+
+.project-form-header p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+.close-project-form {
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+
+  background: white;
+  color: #475569;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   FORM GRID
+========================= */
+
+.project-form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.project-input-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.project-input-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.project-input-group label {
+  font-size: 13px;
+
+  font-weight: 650;
+
+  color: #334155;
+}
+
+.project-input-group input,
+.project-input-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 11px 13px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: white;
+
+  color: #172033;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  transition: border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.project-input-group textarea {
+  resize: vertical;
+}
+
+.project-input-group input:focus,
+.project-input-group textarea:focus {
+  border-color: #64748b;
+
+  box-shadow:
+    0 0 0 3px rgba(100, 116, 139, 0.12);
+}
+
+.project-input-group input::placeholder,
+.project-input-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+
+/* =========================
+   FORM ACTIONS
+========================= */
+
+.project-form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 28px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+.cancel-project-button {
+  border: 1px solid #cbd5e1;
+
+  background: white;
+
+  color: #475569;
+}
+
+.cancel-project-button:hover {
+  background: #f8fafc;
+}
+
+.save-project-button {
+  background: #111827;
+
+  color: white;
+}
+
+.save-project-button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .projects-page {
+    padding: 28px 20px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .projects-header {
+    flex-direction: column;
+  }
+
+  .projects-header h1 {
+    font-size: 28px;
+  }
+
+  .add-project-button {
+    width: 100%;
+  }
+
+  .project-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-input-group.full-width {
+    grid-column: auto;
+  }
+
+  .project-form-card {
+    padding: 22px;
+  }
+
+  .project-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .project-form-actions button {
+    width: 100%;
+  }
+
+  .project-card {
+    padding: 20px;
+  }
+}
