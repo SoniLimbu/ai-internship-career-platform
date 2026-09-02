@@ -1,101 +1,124 @@
-```jsx
 import { useState } from "react";
 import {
-  Plus,
+  FolderKanban,
+  Code2,
+  ExternalLink,
   Edit3,
   Trash2,
+  Plus,
   X,
   Save,
-  ExternalLink,
-  Code2,
-  FolderGit2,
+  Calendar,
 } from "lucide-react";
-
 import "./Projects.css";
 
 function Projects() {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingId, setEditingId] = useState(null);
-  const [message, setMessage] = useState("");
-
   const [projects, setProjects] = useState([
     {
       id: 1,
-      name: "AI Internship & Career Platform",
+      title: "AI Internship Career Platform",
       description:
-        "An AI-powered platform that helps university students discover internships, manage their career profiles, and improve their career development.",
-      technologies: "React, Django, PostgreSQL",
-      github:
-        "https://github.com/SoniLimbu/ai-internship-career-platform",
-      live: "",
+        "An AI-powered platform that helps students find internships and improve their career opportunities.",
+      technologies: ["React", "Django", "PostgreSQL", "AI"],
+      github: "https://github.com/",
+      liveDemo: "",
+      startDate: "2026-01",
+      endDate: "2026-05",
     },
     {
       id: 2,
-      name: "Weather App",
+      title: "Flower Shop Website",
       description:
-        "A responsive weather application that displays current weather information using a weather API.",
-      technologies: "HTML, CSS, JavaScript, Weather API",
-      github: "https://github.com/SoniLimbu/weather-app",
-      live: "https://sonilimbu.github.io/weather-app/",
+        "A modern responsive flower shop website where users can explore flowers and place orders.",
+      technologies: ["React", "CSS", "JavaScript"],
+      github: "https://github.com/",
+      liveDemo: "",
+      startDate: "2025-10",
+      endDate: "2025-12",
     },
   ]);
 
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+
   const [formData, setFormData] = useState({
-    name: "",
+    title: "",
     description: "",
     technologies: "",
     github: "",
-    live: "",
+    liveDemo: "",
+    startDate: "",
+    endDate: "",
   });
 
-  // Handle input changes
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
-  // Add project
   const handleAddProject = () => {
+    setEditingId(null);
+
     setFormData({
-      name: "",
+      title: "",
       description: "",
       technologies: "",
       github: "",
-      live: "",
+      liveDemo: "",
+      startDate: "",
+      endDate: "",
     });
 
-    setEditingId(null);
-    setMessage("");
-    setIsEditing(true);
+    setShowForm(true);
   };
 
-  // Edit project
   const handleEditProject = (project) => {
+    setEditingId(project.id);
+
     setFormData({
-      name: project.name,
+      title: project.title,
       description: project.description,
-      technologies: project.technologies,
+      technologies: project.technologies.join(", "),
       github: project.github,
-      live: project.live,
+      liveDemo: project.liveDemo,
+      startDate: project.startDate,
+      endDate: project.endDate,
     });
 
-    setEditingId(project.id);
-    setMessage("");
-    setIsEditing(true);
+    setShowForm(true);
   };
 
-  // Cancel form
-  const handleCancel = () => {
-    setIsEditing(false);
-    setEditingId(null);
-    setMessage("");
+  const handleDeleteProject = (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this project?"
+    );
+
+    if (confirmDelete) {
+      setProjects(projects.filter((project) => project.id !== id));
+    }
   };
 
-  // Submit project
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!formData.title.trim()) {
+      alert("Please enter the project title.");
+      return;
+    }
+
+    if (!formData.description.trim()) {
+      alert("Please enter the project description.");
+      return;
+    }
+
+    const technologies = formData.technologies
+      .split(",")
+      .map((tech) => tech.trim())
+      .filter((tech) => tech !== "");
 
     if (editingId) {
       setProjects(
@@ -103,157 +126,154 @@ function Projects() {
           project.id === editingId
             ? {
                 ...project,
-                ...formData,
+                title: formData.title,
+                description: formData.description,
+                technologies,
+                github: formData.github,
+                liveDemo: formData.liveDemo,
+                startDate: formData.startDate,
+                endDate: formData.endDate,
               }
             : project
         )
       );
-
-      setMessage("Project updated successfully!");
     } else {
       const newProject = {
         id: Date.now(),
-        ...formData,
+        title: formData.title,
+        description: formData.description,
+        technologies,
+        github: formData.github,
+        liveDemo: formData.liveDemo,
+        startDate: formData.startDate,
+        endDate: formData.endDate,
       };
 
       setProjects([...projects, newProject]);
-
-      setMessage("Project added successfully!");
     }
 
-    setIsEditing(false);
+    setShowForm(false);
     setEditingId(null);
+
+    setFormData({
+      title: "",
+      description: "",
+      technologies: "",
+      github: "",
+      liveDemo: "",
+      startDate: "",
+      endDate: "",
+    });
   };
 
-  // Delete project
-  const handleDelete = (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this project?"
-    );
+  const handleCancel = () => {
+    setShowForm(false);
+    setEditingId(null);
 
-    if (!confirmDelete) {
-      return;
-    }
-
-    setProjects(
-      projects.filter((project) => project.id !== id)
-    );
-
-    setMessage("Project deleted successfully!");
+    setFormData({
+      title: "",
+      description: "",
+      technologies: "",
+      github: "",
+      liveDemo: "",
+      startDate: "",
+      endDate: "",
+    });
   };
 
   return (
     <div className="projects-page">
-
-      {/* =========================
-          PAGE HEADER
-      ========================= */}
-
+      {/* Header */}
       <div className="projects-header">
         <div>
-          <p className="projects-label">STUDENT PROJECTS</p>
-
           <h1>My Projects</h1>
-
-          <p className="projects-description">
-            Showcase your academic, personal, and professional
-            projects.
+          <p>
+            Showcase your projects, technical skills, and practical experience.
           </p>
         </div>
 
-        {!isEditing && (
-          <button
-            className="add-project-button"
-            onClick={handleAddProject}
-          >
-            <Plus size={18} />
-            Add Project
-          </button>
-        )}
+        <button className="add-project-btn" onClick={handleAddProject}>
+          <Plus size={18} />
+          Add Project
+        </button>
       </div>
 
-      {/* =========================
-          SUCCESS MESSAGE
-      ========================= */}
+      {/* Summary */}
+      <div className="projects-summary">
+        <div className="summary-card">
+          <div className="summary-icon">
+            <FolderKanban size={22} />
+          </div>
 
-      {message && (
-        <div className="projects-success-message">
-          {message}
+          <div>
+            <h3>{projects.length}</h3>
+            <p>Total Projects</p>
+          </div>
         </div>
-      )}
 
-      {/* =========================
-          ADD / EDIT FORM
-      ========================= */}
+        <div className="summary-card">
+          <div className="summary-icon">
+            <Code2 size={22} />
+          </div>
 
-      {isEditing ? (
-        <form
-          className="project-form-card"
-          onSubmit={handleSubmit}
-        >
+          <div>
+            <h3>
+              {
+                new Set(
+                  projects.flatMap((project) => project.technologies)
+                ).size
+              }
+            </h3>
+            <p>Technologies Used</p>
+          </div>
+        </div>
+      </div>
 
-          {/* FORM HEADER */}
-
-          <div className="project-form-header">
+      {/* Add/Edit Form */}
+      {showForm && (
+        <div className="project-form-card">
+          <div className="form-header">
             <div>
-              <h2>
-                {editingId
-                  ? "Edit Project"
-                  : "Add New Project"}
-              </h2>
-
+              <h2>{editingId ? "Edit Project" : "Add New Project"}</h2>
               <p>
-                Add details about your project.
+                {editingId
+                  ? "Update your project information."
+                  : "Add a project to your portfolio."}
               </p>
             </div>
 
-            <button
-              type="button"
-              className="close-project-form"
-              onClick={handleCancel}
-            >
+            <button className="close-btn" onClick={handleCancel}>
               <X size={20} />
             </button>
           </div>
 
-          {/* FORM GRID */}
-
-          <div className="project-form-grid">
-
-            {/* PROJECT NAME */}
-
-            <div className="project-input-group full-width">
-              <label>Project Name</label>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Project Title *</label>
 
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="title"
+                value={formData.title}
                 onChange={handleChange}
-                placeholder="e.g. AI Internship Platform"
-                required
+                placeholder="e.g. AI Internship Career Platform"
               />
             </div>
 
-            {/* DESCRIPTION */}
-
-            <div className="project-input-group full-width">
-              <label>Project Description</label>
+            <div className="form-group">
+              <label>Description *</label>
 
               <textarea
                 name="description"
-                rows="5"
                 value={formData.description}
                 onChange={handleChange}
-                placeholder="Describe what your project does..."
-                required
+                placeholder="Describe your project..."
+                rows="5"
               />
             </div>
 
-            {/* TECHNOLOGIES */}
-
-            <div className="project-input-group full-width">
-              <label>Technologies Used</label>
+            <div className="form-group">
+              <label>Technologies</label>
 
               <input
                 type="text"
@@ -261,223 +281,219 @@ function Projects() {
                 value={formData.technologies}
                 onChange={handleChange}
                 placeholder="React, JavaScript, Django, PostgreSQL"
-                required
               />
+
+              <small>
+                Separate technologies using commas.
+              </small>
             </div>
 
-            {/* GITHUB */}
+            <div className="form-row">
+              <div className="form-group">
+                <label>Start Date</label>
 
-            <div className="project-input-group">
-              <label>GitHub URL</label>
-
-              <input
-                type="url"
-                name="github"
-                value={formData.github}
-                onChange={handleChange}
-                placeholder="https://github.com/..."
-              />
-            </div>
-
-            {/* LIVE URL */}
-
-            <div className="project-input-group">
-              <label>Live Project URL</label>
-
-              <input
-                type="url"
-                name="live"
-                value={formData.live}
-                onChange={handleChange}
-                placeholder="https://..."
-              />
-            </div>
-          </div>
-
-          {/* FORM BUTTONS */}
-
-          <div className="project-form-actions">
-
-            <button
-              type="button"
-              className="cancel-project-button"
-              onClick={handleCancel}
-            >
-              <X size={17} />
-              Cancel
-            </button>
-
-            <button
-              type="submit"
-              className="save-project-button"
-            >
-              <Save size={17} />
-
-              {editingId
-                ? "Save Changes"
-                : "Add Project"}
-            </button>
-
-          </div>
-        </form>
-      ) : (
-
-        /* =========================
-           PROJECT LIST
-        ========================= */
-
-        <div className="projects-content">
-
-          {projects.length === 0 ? (
-
-            /* EMPTY STATE */
-
-            <div className="projects-empty">
-
-              <div className="projects-empty-icon">
-                <FolderGit2 size={38} />
+                <input
+                  type="month"
+                  name="startDate"
+                  value={formData.startDate}
+                  onChange={handleChange}
+                />
               </div>
 
-              <h2>No Projects Yet</h2>
+              <div className="form-group">
+                <label>End Date</label>
 
-              <p>
-                Start building your portfolio by adding
-                your first project.
-              </p>
-
-              <button
-                className="add-project-button"
-                onClick={handleAddProject}
-              >
-                <Plus size={18} />
-                Add Your First Project
-              </button>
-
+                <input
+                  type="month"
+                  name="endDate"
+                  value={formData.endDate}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
 
-          ) : (
+            <div className="form-group">
+              <label>GitHub URL</label>
 
-            /* PROJECT CARDS */
+              <div className="input-with-icon">
+                <Code2 size={18} />
 
-            <div className="projects-grid">
+                <input
+                  type="url"
+                  name="github"
+                  value={formData.github}
+                  onChange={handleChange}
+                  placeholder="https://github.com/username/project"
+                />
+              </div>
+            </div>
 
-              {projects.map((project) => (
+            <div className="form-group">
+              <label>Live Demo URL</label>
 
-                <div
-                  className="project-card"
-                  key={project.id}
-                >
+              <div className="input-with-icon">
+                <ExternalLink size={18} />
 
-                  {/* CARD TOP */}
+                <input
+                  type="url"
+                  name="liveDemo"
+                  value={formData.liveDemo}
+                  onChange={handleChange}
+                  placeholder="https://your-project.com"
+                />
+              </div>
+            </div>
 
-                  <div className="project-card-top">
+            <div className="form-actions">
+              <button
+                type="button"
+                className="cancel-btn"
+                onClick={handleCancel}
+              >
+                <X size={17} />
+                Cancel
+              </button>
 
-                    <div className="project-icon">
-                      <Code2 size={24} />
-                    </div>
+              <button type="submit" className="save-btn">
+                <Save size={17} />
+                {editingId ? "Update Project" : "Save Project"}
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
 
-                    <div className="project-card-actions">
+      {/* Projects List */}
+      <div className="projects-section">
+        <div className="section-title">
+          <h2>Your Projects</h2>
 
-                      {/* EDIT */}
+          <span>
+            {projects.length}{" "}
+            {projects.length === 1 ? "project" : "projects"}
+          </span>
+        </div>
 
-                      <button
-                        type="button"
-                        className="project-icon-button"
-                        onClick={() =>
-                          handleEditProject(project)
-                        }
-                        title="Edit project"
-                      >
-                        <Edit3 size={17} />
-                      </button>
+        {projects.length === 0 ? (
+          <div className="empty-projects">
+            <div className="empty-icon">
+              <FolderKanban size={40} />
+            </div>
 
-                      {/* DELETE */}
+            <h3>No projects yet</h3>
 
-                      <button
-                        type="button"
-                        className="project-icon-button delete"
-                        onClick={() =>
-                          handleDelete(project.id)
-                        }
-                        title="Delete project"
-                      >
-                        <Trash2 size={17} />
-                      </button>
+            <p>
+              Start building your portfolio by adding your first project.
+            </p>
 
-                    </div>
+            <button
+              className="add-project-btn"
+              onClick={handleAddProject}
+            >
+              <Plus size={18} />
+              Add Your First Project
+            </button>
+          </div>
+        ) : (
+          <div className="projects-grid">
+            {projects.map((project) => (
+              <div className="project-card" key={project.id}>
+                {/* Card Header */}
+                <div className="project-card-header">
+                  <div className="project-icon">
+                    <FolderKanban size={22} />
                   </div>
 
-                  {/* PROJECT NAME */}
+                  <div className="project-actions">
+                    <button
+                      className="icon-btn edit"
+                      onClick={() => handleEditProject(project)}
+                      title="Edit project"
+                    >
+                      <Edit3 size={17} />
+                    </button>
 
-                  <h2>{project.name}</h2>
+                    <button
+                      className="icon-btn delete"
+                      onClick={() => handleDeleteProject(project.id)}
+                      title="Delete project"
+                    >
+                      <Trash2 size={17} />
+                    </button>
+                  </div>
+                </div>
 
-                  {/* DESCRIPTION */}
+                {/* Project Content */}
+                <div className="project-content">
+                  <h3>{project.title}</h3>
 
                   <p className="project-description">
                     {project.description}
                   </p>
 
-                  {/* TECHNOLOGIES */}
+                  {/* Technologies */}
+                  <div className="technology-section">
+                    <h4>
+                      <Code2 size={16} />
+                      Technologies
+                    </h4>
 
-                  <div className="project-technologies">
-
-                    {project.technologies
-                      .split(",")
-                      .map((technology, index) => (
-                        <span key={index}>
-                          {technology.trim()}
+                    <div className="technology-list">
+                      {project.technologies.map((technology, index) => (
+                        <span key={index} className="technology-tag">
+                          {technology}
                         </span>
                       ))}
-
+                    </div>
                   </div>
 
-                  {/* PROJECT LINKS */}
+                  {/* Date */}
+                  {(project.startDate || project.endDate) && (
+                    <div className="project-date">
+                      <Calendar size={16} />
 
+                      <span>
+                        {project.startDate || "N/A"}
+                        {" - "}
+                        {project.endDate || "Present"}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Links */}
                   <div className="project-links">
-
-                    {/* GITHUB */}
-
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
+                        className="project-link github-link"
                       >
                         <Code2 size={17} />
                         GitHub
                       </a>
                     )}
 
-                    {/* LIVE PROJECT */}
-
-                    {project.live && (
+                    {project.liveDemo && (
                       <a
-                        href={project.live}
+                        href={project.liveDemo}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
+                        className="project-link demo-link"
                       >
                         <ExternalLink size={17} />
                         Live Demo
                       </a>
                     )}
-
                   </div>
-
                 </div>
-
-              ))}
-
-            </div>
-
-          )}
-
-        </div>
-
-      )}
-
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
 export default Projects;
-```
